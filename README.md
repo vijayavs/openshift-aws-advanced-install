@@ -23,7 +23,7 @@ This section will provide instructions on how to create Security Groups for the 
 * Allow inbound HTTP/HTTPS traffic
 * Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
-# 3. Allow SSH Access to Bastion instance
+# 3. Allow SSH access to bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -38,7 +38,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
 
-# 4. Create Bastion compute instance
+# 4. Create bastion compute instance
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
 * Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
@@ -58,7 +58,7 @@ This section will provide instructions on how to create Security Groups for the 
 * Choose the security group with the name **ssh-access**
 * Seclect **Review and Launch**. This will create a new EC2 instance.
 
-# 5. Allow SSH access to OpenShift cluster from Bastion instance
+# 5. Allow SSH access to OpenShift cluster from bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
