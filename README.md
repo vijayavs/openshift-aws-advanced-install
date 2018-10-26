@@ -39,14 +39,15 @@ This section will provide instructions on how to create Security Groups for the 
 * Select **Create**
 
 # 4. Create bastion compute instance
+Bastion server will be used as Ansible server and NFS storage server.
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
 * Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
 * Choose **t2.micro** (1 vCPU, 1 GiB Memory) as the **Instance Type**
 * Select **Next: Configure Instance Details**. Let the default values be as is.
-* Select **Add: Storage**
-* Increase **Size(GiB)** to 50
-* Select **Add New Volume**. Increase **Size(GiB)** to 100. Check **Delete on Termination**
+* Select **Add: Storage**. We will add 2 EBS volumes. One EBS root volume with 50 GiB and another EBS volume for NFS with 100 GiB
+* Increase root volume **Size(GiB)** to 50
+* Select **Add New Volume** for NFS. Increase NFS volume **Size(GiB)** to 100. Check **Delete on Termination**
 * Select **Add Tags**
 * Create the following tags:
   * Key=Name Value=bastion
