@@ -37,8 +37,28 @@ This section will provide instructions on how to create Security Groups for the 
   * **Type**: SSH
   * **Source**: Anywhere
 * Select **Create**
-  
-# 4. Allow SSH access to OpenShift cluster from Bastion instance
+
+# 4. Create Bastion compute instance
+* Choose **Services** -> **EC2**
+* From **EC2 Dashboard**, select **Launch Instance**
+* Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
+* Choose **t2.micro** (1 vCPU, 1 GiB Memory) as the **Instance Type**
+* Select **Next: Configure Instance Details**. Let the default values be as is.
+* Select **Add: Storage**
+* Increase **Size(GiB)** to 50
+* Select **Add New Volume**. Increase **Size(GiB)** to 100. Check **Delete on Termination**
+* Select **Add Tags**
+* Create the following tags:
+  * Key=Name Value=bastion
+  * Key=cluster-id Value=
+  * Key=role Value=bastion
+**Note**:cluster-id key has not been provided any value because Bastion instance can be used to create more than one cluster
+* Select **Next: Configure Security Group**
+* Choose **Select an existing security group** option
+* Choose the security group with the name **ssh-access**
+* Seclect **Review and Launch**. This will create a new EC2 instance.
+
+# 5. Allow SSH access to OpenShift cluster from Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
