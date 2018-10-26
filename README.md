@@ -3,7 +3,12 @@ This guide will provide step by step instructions on how to install OpenShift Co
 A quickstart guide is available on AWS to install OpenShift. Please refer this URL https://aws.amazon.com/quickstart/architecture/openshift/
 
 # Prerequisites
-<ul>
-  <li>AWS account</li>
-  <li>Red Hat subscription</li>
-</ul>
+* AWS account
+* Red Hat subscription
+
+# Create Key Pairs
+* Login to AWS Management Console (https://aws.amazon.com/)
+* Select Services -> EC2
+* From the navigation menu on the left, go to **Network & Security**
+* Select **Key Pairs**
+* Choose **Create Key Pair**
