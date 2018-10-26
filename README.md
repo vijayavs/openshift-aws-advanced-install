@@ -17,7 +17,7 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 * Select **Create**
 * A file with extension **.pem** will be downloaded on your local machine. Please save this file in a well known location
 
-# Create Security Group
+# Create Security Group for SSH access to bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -25,4 +25,11 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 * Provide the following information in **Create Security Group** dialog:
   * **Security Group Name**: ssh-access
   * **Description**: SSH Access to OpenShift Cluster
-  * **VPC**: select the default VPC or the one you had created
+  * **VPC**: select default VPC OR create a new VPC
+* Under Security group rules, **Inbound** tab, select **Add Rule**
+* Provide the following information:
+  * **Type**: SSH
+  * **Source**: Anywhere
+* Select **Create**
+  
+  
