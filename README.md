@@ -7,7 +7,7 @@ This guide will provide step by step instructions on how to install OpenShift Co
 
 For the below steps, please login to AWS Management Console (https://aws.amazon.com/)
 
-# Create Key Pairs
+# 1. Create Key Pairs
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Key Pairs**
@@ -16,14 +16,14 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 * Select **Create**
 * A file with extension **.pem** will be downloaded on your local machine. Please save this file in a well known location
 
-# Create Security Group
+# 2. Create Security Group
 This section will provide instructions on how to create Security Groups for the following purposes:
 * Allow SSH access to Bastion (Ansible server) instance
 * Allow SSH access to OpenShift master, etcd and nodes from Bastion instance
 * Allow inbound HTTP/HTTPS traffic
 * Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
-# Allow SSH Access to Bastion instance
+# 3. Allow SSH Access to Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -38,7 +38,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
   
-# Allow SSH access to OpenShift cluster from Bastion instance
+# 4. Allow SSH access to OpenShift cluster from Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
