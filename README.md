@@ -38,7 +38,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
   
-# Allow SSH access to OpenShift master, etcd and nodes from Bastion instance
+# Allow SSH access to OpenShift cluster from Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
