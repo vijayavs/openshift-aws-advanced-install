@@ -3,5 +3,5 @@ This guide will provide step by step instructions on how to install OpenShift Co
 A quickstart guide is available on AWS to install OpenShift. Please refer this URL https://aws.amazon.com/quickstart/architecture/openshift/
 
 # Prerequisites
-1. AWS account
-2. Red Hat subscription
+AWS account
+Red Hat subscription
