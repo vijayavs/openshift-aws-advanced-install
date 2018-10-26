@@ -17,7 +17,14 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 * Select **Create**
 * A file with extension **.pem** will be downloaded on your local machine. Please save this file in a well known location
 
-# Create Security Group for SSH access to bastion instance
+# Create Security Group
+This section will provide instructions on how to create Security Groups for the following purposes:
+* SSH access to Bastion (Ansible server) instance
+* SSH access to OpenShift master, etcd and nodes from Bastion instance
+* Inbound HTTP/HTTPS traffic
+* TCP/UDP traffic to master, etcd and nodes in the subnet
+
+# SSH Access to Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
