@@ -24,7 +24,7 @@ This section will provide instructions on how to create Security Groups for the 
 * Allow inbound HTTP/HTTPS traffic
 * Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
-# SSH Access to Bastion instance
+# Allow SSH Access to Bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -39,4 +39,21 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
   
-  
+# Allow SSH access to OpenShift master, etcd and nodes from Bastion instance
+* Choose **Services** -> **EC2**
+* From the navigation menu on the left, go to **Network & Security**
+* Choose **Security Groups**
+* Select **Create Security Group**
+* Provide the following information in **Create Security Group** dialog:
+  * **Security Group Name**: all-tcp-udp-in-subnet
+  * **Description**: Allows all TCP/UDP traffic in the subnet inbound and all traffic outbound
+  * **VPC**: select default VPC OR create a new VPC
+* Under Security group rules, **Inbound** tab, select **Add Rule**
+* Provide the following information:
+  * **Type**: All TCP
+  * **Source**: 172.31.0.0/16
+* Select **Add Rule** again
+* Provide the following information:
+  * **Type**: All UDP
+  * **Source**: 172.31.0.0/16
+* Select **Create**
