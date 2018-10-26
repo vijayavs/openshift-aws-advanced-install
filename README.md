@@ -23,6 +23,8 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 * Choose **Security Groups**
 * Select **Create Security Group**
 * Provide the following information in **Create Security Group** dialog:
+  ```
   Security Group Name: ssh-access
   Description: SSH Access to OpenShift Cluster
   VPC: select the default VPC or the one you had created
+  ```
