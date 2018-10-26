@@ -19,10 +19,10 @@ For the below steps, please login to AWS Management Console (https://aws.amazon.
 
 # Create Security Group
 This section will provide instructions on how to create Security Groups for the following purposes:
-* SSH access to Bastion (Ansible server) instance
-* SSH access to OpenShift master, etcd and nodes from Bastion instance
-* Inbound HTTP/HTTPS traffic
-* TCP/UDP traffic to master, etcd and nodes in the subnet
+* Allow SSH access to Bastion (Ansible server) instance
+* Allow SSH access to OpenShift master, etcd and nodes from Bastion instance
+* Allow inbound HTTP/HTTPS traffic
+* Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
 # SSH Access to Bastion instance
 * Choose **Services** -> **EC2**
