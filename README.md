@@ -28,7 +28,7 @@ This section will provide instructions on how to create Security Groups for the 
 * Allow inbound HTTP/HTTPS traffic
 * Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
-# 3. Security Group - Allow SSH access to bastion instance
+## 2.1 Security Group - Allow SSH access to bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -43,7 +43,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
 
-# 4. Security Group - Allow SSH access to OpenShift cluster from bastion instance
+## 2.2 Security Group - Allow SSH access to OpenShift cluster from bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -68,7 +68,7 @@ This section will provide instructions on how to create Security Groups for the 
 
 **Note:** Since we are using default VPC, source (CIDR) mentioned above is taken from the default VPCs **IPv4 CIDR**
 
-# 5. Security Group - Allow TCP/UDP traffic within subnet
+## 2.3 Security Group - Allow TCP/UDP traffic within subnet
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -89,7 +89,7 @@ This section will provide instructions on how to create Security Groups for the 
 
 **Note:** Since we are using default VPC, source (CIDR) mentioned above is taken from the default VPCs **IPv4 CIDR**
 
-# 6. Security Group - Allow HTTP/HTTPS traffic to OpenShift cluster
+## 2.4 Security Group - Allow HTTP/HTTPS traffic to OpenShift cluster
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
