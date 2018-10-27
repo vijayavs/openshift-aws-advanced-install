@@ -134,7 +134,8 @@ can be used to create more than one cluster
 * Select **Next: Configure Security Group**
 * Choose **Select an existing security group** option
 * Choose the security group with the name **ssh-access**
-* Seclect **Review and Launch**. This will create a new EC2 instance.
+* Seclect **Review and Launch**. This will create a new EC2 instance
+* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
 
 # 8. Login and update bastion instance
 After creating the bastion instance, it is a good idea to login as ec2-user using the Key Pair created in Step 1
@@ -157,7 +158,8 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
   ```
 * Above command should complete successfully
 
-# 9. Create Master instance
+# 9. Create master instance
+
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
 * Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
@@ -177,4 +179,55 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
 * Select **Next: Configure Security Group**
 * Choose **Select an existing security group** option
 * Choose the security group with the name **ssh-inside-subnet** and **tcp-http-world**
-* Select **Review and Launch**. This will create a new EC2 instance.
+* Select **Review and Launch**. This will create a new EC2 instance
+* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
+
+# 10. Create etcd instance
+
+* Choose **Services** -> **EC2**
+* From **EC2 Dashboard**, select **Launch Instance**
+* Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
+* Choose **t2.xlarge** (4 vCPU, 16 GiB Memory) as the **Instance Type**
+* Select **Next: Configure Instance Details**. Keep the default values.
+* Select **Add: Storage**. We will only the root volume. 
+* Increase root volume **Size(GiB)** to 50
+* Select **Add Tags**
+* Create the following tags:
+
+	Key        | Value
+	-----------|--------
+	name       | infra
+	cluster-id | c1
+	role       | infra
+
+* Select **Next: Configure Security Group**
+* Choose **Select an existing security group** option
+* Choose the security group with the name **ssh-inside-subnet** and **tcp-http-world**
+* Select **Review and Launch**. This will create a new EC2 instance
+* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
+
+# 11. Create app node instance(s)
+
+* Choose **Services** -> **EC2**
+* From **EC2 Dashboard**, select **Launch Instance**
+* Select **Red Hat Enterprise Linux 7.5 (HVM), SSD Volume Type** as the AMI
+* Choose **t2.xlarge** (4 vCPU, 16 GiB Memory) as the **Instance Type**
+* Select **Next: Configure Instance Details**. Keep the default values.
+* Select **Add: Storage**. We will only the root volume. 
+* Increase root volume **Size(GiB)** to 50
+* Select **Add Tags**
+* Create the following tags:
+
+	Key        | Value
+	-----------|--------
+	name       | node-1
+	cluster-id | c1
+	role       | compute
+
+* Select **Next: Configure Security Group**
+* Choose **Select an existing security group** option
+* Choose the security group with the name **ssh-inside-subnet** and **tcp-http-world**
+* Select **Review and Launch**. This will create a new EC2 instance
+* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
+* Please follow the above instructions to create **node-2**
+
