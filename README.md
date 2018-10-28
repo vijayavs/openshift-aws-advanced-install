@@ -230,4 +230,3 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
 * Select **Review and Launch**. This will create a new EC2 instance
 * When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
 * Please follow the above instructions to create **node-2**
-
