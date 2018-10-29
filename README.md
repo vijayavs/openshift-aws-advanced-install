@@ -12,23 +12,26 @@ A quickstart guide is available on AWS to install OpenShift. Please refer this [
 
 For the below steps, please login to AWS Management Console (https://aws.amazon.com/)
 
-# 1. Create Key Pairs
+# 1. Generate SSH key
+* Run the command ssh-keygen on your local machine
+* Provide a name other than id-rsa for the generated key
+* Create the key without passphrase
+
+# 2. Create Key Pairs
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Key Pairs**
-* Select **Create Key Pair**
-* Provide a name for Key Pair
-* Select **Create**
-* A file with extension **.pem** will be downloaded on your local machine. Please save this file in a known location
+* Import the public key generated in step #1
+* * Select **Import**
 
-# 2. Create Security Group
+# 3. Create Security Group
 This section will provide instructions on how to create Security Groups for the following purposes:
 * Allow SSH access to Bastion (Ansible server) instance
 * Allow SSH access to OpenShift master, etcd and nodes from Bastion instance
 * Allow inbound HTTP/HTTPS traffic
 * Allow TCP/UDP traffic to master, etcd and nodes in the subnet
 
-## 2.1 Security Group - Allow SSH access to bastion instance
+## 3.1 Security Group - Allow SSH access to bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -43,7 +46,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Anywhere
 * Select **Create**
 
-## 2.2 Security Group - Allow SSH access to OpenShift cluster from bastion instance
+## 3.2 Security Group - Allow SSH access to OpenShift cluster from bastion instance
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -68,7 +71,7 @@ This section will provide instructions on how to create Security Groups for the 
 
 **Note:** Since we are using default VPC, source (CIDR) mentioned above is taken from the default VPCs **IPv4 CIDR**
 
-## 2.3 Security Group - Allow TCP/UDP traffic within subnet
+## 3.3 Security Group - Allow TCP/UDP traffic within subnet
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -89,7 +92,7 @@ This section will provide instructions on how to create Security Groups for the 
 
 **Note:** Since we are using default VPC, source (CIDR) mentioned above is taken from the default VPCs **IPv4 CIDR**
 
-## 2.4 Security Group - Allow HTTP/HTTPS traffic to OpenShift cluster
+## 3.4 Security Group - Allow HTTP/HTTPS traffic to OpenShift cluster
 * Choose **Services** -> **EC2**
 * From the navigation menu on the left, go to **Network & Security**
 * Choose **Security Groups**
@@ -108,7 +111,7 @@ This section will provide instructions on how to create Security Groups for the 
   * **Source**: Custom (0.0.0.0/0,::/0)
 * Select **Create**
 
-# 7. Create bastion compute instance
+# 4. Create bastion compute instance
 Bastion server will be used as Ansible server and NFS storage server.
 
 * Choose **Services** -> **EC2**
@@ -135,15 +138,15 @@ can be used to create more than one cluster
 * Choose **Select an existing security group** option
 * Choose the security group with the name **ssh-access**
 * Seclect **Review and Launch**. This will create a new EC2 instance
-* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
+* When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair imported in Step #2
 
-# 8. Login and update bastion instance
-After creating the bastion instance, it is a good idea to login as ec2-user using the Key Pair created in Step 1
+# 5. Login and update bastion instance
+After creating the bastion instance, it is a good idea to login as ec2-user using the Key Pair imported in Step 2
 
 * Use the below command to login to bastion instance
 
   ```
-  ssh -i "<key-pair-file>.pem" ec2-user@<public-dns-name>
+  ssh -i "<key-pair-file>" ec2-user@<public-dns-name>
   ```
 * Above command should successfully login as ec2-user
 * Switch to root user
@@ -158,7 +161,7 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
   ```
 * Above command should complete successfully
 
-# 9. Create master instance
+# 6. Create master instance
 
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
@@ -182,7 +185,7 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
 * Select **Review and Launch**. This will create a new EC2 instance
 * When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
 
-# 10. Create etcd instance
+# 7. Create etcd instance
 
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
@@ -206,7 +209,7 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
 * Select **Review and Launch**. This will create a new EC2 instance
 * When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
 
-# 11. Create app node instance(s)
+# 8. Create app node instance(s)
 
 * Choose **Services** -> **EC2**
 * From **EC2 Dashboard**, select **Launch Instance**
@@ -230,3 +233,50 @@ After creating the bastion instance, it is a good idea to login as ec2-user usin
 * Select **Review and Launch**. This will create a new EC2 instance
 * When prompted with the dialog **Select an existing key pair or create new key pair**, please choose **Choose an existing key pair** and then select the Key Pair created in Step #1
 * Please follow the above instructions to create **node-2**
+
+# 9. Login and update master, etcd and app nodes using ssh-agent
+* On your local machine, switch to ~/.ssh directory
+* Execute the command:
+
+  ```
+  ssh-agent
+  ```
+* Execeute the command to ensure that the agent has no identities:
+  
+  ```
+  ssh-add -l
+  ```
+* Add the key generated in Step #1 to ssh-agent using the command 
+
+  ```
+  ssh-add <key-file-name>
+  ```
+* Execeute the command to ensure that the agent has the new identity:
+
+  ```
+  ssh-add -l
+  ```
+* Use the below command to login to bastion instance
+
+  ```
+  ssh -i "<key-file-name>" ec2-user@<public-dns-name> -A
+  ```
+* Above command should successfully login to bastion instance
+* From bastion instance, execute the command to check if key is available in bastion instance
+ 
+  ```
+  ssh-add -l
+  ```
+* Use the below command to login to master instance by using it's private IP:
+
+  ```
+  ssh <private-ip>
+  ```
+* Once logged in, run the below command to update instance:
+
+  ```
+  yum update -y
+  ```
+* Repeat the same process for etcd and app instances
+
+# 10. 
